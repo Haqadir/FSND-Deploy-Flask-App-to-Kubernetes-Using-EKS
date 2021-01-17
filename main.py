@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 A simple app to create a JWT token.
 """
@@ -78,8 +79,13 @@ def auth():
     body = {'email': email, 'password': password}
 
     user_data = body
+    t = token=_get_jwt(user_data)
+    print(type(t))
+    print(t)
+    print(str(t))
 
-    return jsonify(token=_get_jwt(user_data).decode('utf-8'))
+    #return jsonify(token=_get_jwt(user_data).decode('utf-8'))
+    return jsonify(token=_get_jwt(user_data))
 
 
 @APP.route('/contents', methods=['GET'])
@@ -111,4 +117,6 @@ def _get_jwt(user_data):
     return jwt.encode(payload, JWT_SECRET, algorithm='HS256')
 
 if __name__ == '__main__':
+    print(__name__)
+
     APP.run(host='127.0.0.1', port=8080, debug=True)
