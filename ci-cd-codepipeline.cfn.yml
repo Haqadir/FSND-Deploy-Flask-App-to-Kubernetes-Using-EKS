@@ -32,7 +32,7 @@ Parameters:
   GitHubToken:
     Type: String
     NoEcho: true
-    Description: 48187eb94a47831b97ca55954d8acf56c3c64593 
+    Description: TOk 
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub personal access token
 
@@ -54,7 +54,7 @@ Parameters:
 
   KubectlRoleName:
     Type: String
-    Default: UdacityFlaskDeployCBKubectlRole
+    Default: UdacityFlaskDeployCBKubectlRole1
     Description: IAM role used by kubectl to interact with EKS cluster
     MinLength: 3
     MaxLength: 100
@@ -153,7 +153,7 @@ Resources:
               response['Data'] = {"Message": "Resource creation failed"}
 
             response_body = json.dumps(response)
-            headers = {'content-type': '', "content-length": len(response_body) }
+            headers = {'content-type': '', "content-length": str(len(response_body)) }
             put_response = requests.put(event['ResponseURL'], headers=headers, data=response_body)
             return response
 
